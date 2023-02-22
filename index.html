@@ -16,6 +16,9 @@
         <!-- naver -->
         <meta name="naver-site-verification" content="22d1f22eec2810cb6b50a3fd7e494a8242e91348" />
         <!-- google -->
+
+        <!--구글AD 인증-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6256136874974851" crossorigin="anonymous"></script>
         
         <title>오늘도 주짓수, 최신 주짓수 대회 일정 정보</title>
         <!-- Favicon-->
@@ -24,12 +27,14 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
         $(function(){
         	
-        	//alert('d');
-
+            // 접수상태 띠붙이기
+            dateComApply();
+        	
             $("[id='mapAddress']").click(function(){
                                 
                 // 임시의 textarea 생성
@@ -57,11 +62,47 @@
         });
 
 
+
         // 새창으로 열기
         function openNew(url_){
             window.open(url_, "_blank");
 
             //window.open(url_, "_blank", "width=500, height=500");
+        }
+
+
+
+        //접수상태 띠붙이기
+        // 오늘자 기준 접수 예정 진행 완료 띠입히기
+        function dateComApply(){
+
+            //전역변수
+            var today = new Date().getTime();
+
+            //배열셀렉터
+            $.each($("[id='playCard']"), function(index, obj){
+
+                var applySTTime = new Date($(this).attr('applySTTime'))//.getTime();
+                var applyDLTime = new Date($(this).attr('applyDLTime'))//.getTime();
+
+                //접수완료
+                if(applyDLTime<today){
+
+                    $(this).children( 'h6#apFinish' ).show();
+
+                //접수중
+                }else if((applySTTime<today) && (today<applyDLTime)){
+  
+                    $(this).children( 'h6#apIng' ).show();
+
+                //접수예정
+                }else if(today<applySTTime){
+
+                    $(this).children( 'h6#apYet' ).show();
+                }
+
+            });
+
         }
         </script>
     </head>
@@ -130,10 +171,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/06" applyDLTime="2023/04/28" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 5월 6일</div></h5>
-                            <h6><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -164,10 +207,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/04/03" applyDLTime="2023/04/28" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 5월 6일</div></h5>
-                            <h6><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -198,10 +243,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/03/01" applyDLTime="2023/05/05" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 5월 13일</div></h5>
-                            <h6><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -232,10 +279,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/05/13" applyDLTime="2023/05/13" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 5월 13일</div></h5>
-                            <h6><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -280,10 +329,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/02/13" applyDLTime="2023/03/22" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 4월 1일</div></h5>
-                            <h6><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -314,10 +365,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/02/14" applyDLTime="2023/03/24" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 4월 1일</div></h5>
-                            <h6><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -348,10 +401,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/03/02" applyDLTime="2023/04/02" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 4월 8일</div></h5>
-                            <h6><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -382,10 +437,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/03/06" applyDLTime="2023/03/31" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 4월 8일</div></h5>
-                            <h6><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -416,10 +473,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/02/14" applyDLTime="2023/03/31" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 4월 8일</div></h5>
-                            <h6><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -450,10 +509,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/20" applyDLTime="2023/04/07" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 4월 15일</div></h5>
-                            <h6><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -484,10 +545,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/04/22" applyDLTime="2023/04/22" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 4월 22일</div></h5>
-                            <h6><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -518,10 +581,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/04/29" applyDLTime="2023/04/29" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 4월 29일</div></h5>
-                            <h6><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -566,10 +631,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/06" applyDLTime="2023/02/24" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 3월 4일</div></h5>
-                            <h6><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -600,10 +667,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/16" applyDLTime="2023/02/25" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 3월 4일</div></h5>
-                            <h6><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -634,10 +703,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/16" applyDLTime="2023/03/03" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 3월 11일</div></h5>
-                            <h6><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -668,10 +739,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/06" applyDLTime="2023/03/04" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 3월 11일</div></h5>
-                            <h6><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -702,10 +775,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/30" applyDLTime="2023/03/01" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 3월 12일</div></h5>
-                            <h6><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -736,10 +811,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2022/12/27" applyDLTime="2023/03/10" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 3월 18일</div></h5>
-                            <h6><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -770,10 +847,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/03/03" applyDLTime="2023/03/10" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 3월 18일</div></h5>
-                            <h6><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -804,10 +883,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/06" applyDLTime="2023/03/10" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 3월 18일</div></h5>
-                            <h6><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -838,10 +919,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/02/16" applyDLTime="2023/03/10" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 3월 19일</div></h5>
-                            <h6><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -872,10 +955,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/03" applyDLTime="2023/03/17" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 3월 25일</div></h5>
-                            <h6><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -906,10 +991,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/02/14" applyDLTime="2023/03/17" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 3월 25일</div></h5>
-                            <h6><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -940,10 +1027,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/02/20" applyDLTime="2023/03/17" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 3월 25일</div></h5>
-                            <h6><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -974,10 +1063,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/03/01" applyDLTime="2023/03/12" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 3월 26일</div></h5>
-                            <h6><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1023,10 +1114,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2022/12/06" applyDLTime="2023/01/06" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 2월 4일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1057,10 +1150,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2022/12/27" applyDLTime="2023/01/27" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 2월 4일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1091,10 +1186,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2022/12/27" applyDLTime="2023/01/27" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 2월 4일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1125,10 +1222,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2022/12/27" applyDLTime="2023/01/27" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 2월 11일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1159,10 +1258,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2022/12/17" applyDLTime="2023/02/06" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 2월 11일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1193,10 +1294,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2022/12/27" applyDLTime="2023/02/03" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 2월 12일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1227,10 +1330,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/02/12" applyDLTime="2023/02/12" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 2월 12일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1261,10 +1366,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/09" applyDLTime="2023/02/03" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 2월 18일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1295,10 +1402,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/07" applyDLTime="2023/02/04" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 2월 18일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1329,10 +1438,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/06" applyDLTime="2023/02/10" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 2월 18일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1363,10 +1474,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/16" applyDLTime="2023/02/17" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 2월 25일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1397,10 +1510,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/06" applyDLTime="2023/02/18" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 2월 25일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1431,10 +1546,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/16" applyDLTime="2023/02/17" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 2월 25일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1465,10 +1582,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/30" applyDLTime="2023/02/22" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 2월 25일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1499,10 +1618,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/16" applyDLTime="2023/02/17" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 2월 25일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1533,10 +1654,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="23/01/25" applyDLTime="23/02/15" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 2월 26일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1581,10 +1704,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2022/11/30" applyDLTime="2022/12/30" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 1월 8일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1616,10 +1741,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2022/12/06" applyDLTime="2023/01/06" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 1월 14일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1650,10 +1777,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2022/12/01" applyDLTime="2023/01/06" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 1월 14일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1684,10 +1813,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2022/12/19" applyDLTime="2023/01/08" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 1월 14일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1718,10 +1849,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2022/12/19" applyDLTime="2023/01/15" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 1월 28일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1752,10 +1885,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/11" applyDLTime="2023/01/25" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 1월 28일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6> 
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1786,10 +1921,12 @@
 
                     <!-- 일정카드 시작 -->
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" applySTTime="2023/01/09" applyDLTime="2023/01/25" id="playCard">
                             <!-- 진행중 badge-->
                             <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 1월 28일</div></h5>
-                            <h6><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>                        
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                         
                             <!-- Product image-->
                             <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
                             <!-- Product details-->
@@ -1803,7 +1940,8 @@
                                 <div class="text-left">
                                 <p>
                                     <h6 id="mapAddress" class="bi-geo-alt-fill" add="서울특별시 마포구 서강로9길 49, 지하2층">서울 SGAA 스튜디오</h6>
-                                    <h6 class="bi-calendar-range">일반: 23/01/09 - 23/01/25</h6>
+                                    <h6 class="bi-calendar-range">일반: 23/01/09 - 23/01/25
+                                    </h6>
                                     <h6>&nbsp;</h6>
                                     <h6 class="fw-bolder text-success mt-2">노기/앱솔</h6>
                                 </p>
