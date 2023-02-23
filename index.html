@@ -46,7 +46,6 @@
             });*/
 
 
-
             // 접수상태 띠붙이기
             dateComApply();
         	
@@ -98,6 +97,10 @@
 
                 var applySTTime = new Date($(this).attr('applySTTime'))//.getTime();
                 var applyDLTime = new Date($(this).attr('applyDLTime'))//.getTime();
+
+                applySTTime.setDate(applySTTime.getDate()+1);
+                applyDLTime.setDate(applyDLTime.getDate()+1);
+
 
                 //접수완료
                 if(applyDLTime<today){
@@ -251,6 +254,42 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div id="detailMove" class="text-center" detailAddress="https://bjjakorea.com/match/contents?game_id=56"><a class="btn btn-outline-dark mt-auto"href="#">자세히 보기</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 일정카드 끝 -->
+
+                    <!-- 일정카드 시작 -->
+                    <div class="col mb-5">
+                        <div class="card h-100" applySTTime="2023/01/30" applyDLTime="2023/03/01" id="playCard">
+                            <!-- 진행중 badge-->
+                            <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 3월 12일</div></h5>
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
+                            <!-- Product image-->
+                            <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="card-title fw-bolder mt-4">SGAA 기&노기 챔피언쉽 2023 Spring/Seoul</h5>
+                                </div>
+                            </div>
+
+                            <div class="card-text mb-2 text-center">
+                                <div class="text-center">
+                                <p>
+                                    <h6 id="mapAddress" class="bi-geo-alt-fill" add="서울 마포구 대흥로20길 28, 마포아트센터">서울 마포아트센터</h6>
+                                    <h6 class="bi-calendar-range"> 일반: 23/01/30 - 23/03/01</h6>
+                                    <h6 class="bi-calendar-range"></h6>
+                                    <h6 class="fw-bolder text-success mt-2">키즈/중고등/비기너/노기/상금/앱솔</h6>
+                                </p>
+                                </div>
+                            </div>
+
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div id="detailMove" class="text-center" detailAddress="https://linktr.ee/sgaaofficial"><a class="btn btn-outline-dark mt-auto"href="#">자세히 보기</a></div>
                             </div>
                         </div>
                     </div>
@@ -665,7 +704,7 @@
                             <div class="card-text mb-2 text-center">
                                 <div class="text-center">
                                 <p>
-                                    <h6 id="mapAddress" class="bi-geo-alt-fill" add="경기 수원시 영통구 월드컵로 206">아주대학교체육관</h6>
+                                    <h6 id="mapAddress" class="bi-geo-alt-fill" add="경기 화성시 봉담읍 삼천병마로 1182">장대학교체육관</h6>
                                     <h6 class="bi-calendar-range"> 일반: 23/02/13 - 23/03/22</h6>
                                     <h6>&nbsp;</h6>
                                     <h6 class="fw-bolder text-success mt-2">키즈/중고등/비기너/노기/상금/앱솔</h6>
@@ -908,6 +947,42 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div id="detailMove" class="text-center" detailAddress="https://docs.google.com/forms/d/e/1FAIpQLSdtFU3YnVMVF1VuGuxFwbEXNJagL1dTL6MSYzMwIoBx5VrfpA/viewform"><a class="btn btn-outline-dark mt-auto"href="#">자세히 보기</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 일정카드 끝 -->
+
+                    <!-- 일정카드 시작 -->
+                    <div class="col mb-5">
+                        <div class="card h-100" applySTTime="2023/02/24" applyDLTime="2023/03/10" id="playCard">
+                            <!-- 진행중 badge-->
+                            <h5><div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">23년 3월 18일</div></h5>
+                            <h6 id="apFinish"  style="display:none;"><div class="badge rounded-pill bg-danger position-absolute" style="top: 0.5rem; right: 0.5rem">접수 완료</div></h6>
+                            <h6 id="apIng"  style="display:none;"><div class="badge rounded-pill bg-success position-absolute" style="top: 0.5rem; right: 0.5rem">접수 중</div></h6> 
+                            <h6 id="apYet" style="display:none;"><div class="badge rounded-pill bg-warning position-absolute" style="top: 0.5rem; right: 0.5rem">접수 예정</div></h6>                        
+                            <!-- Product image-->
+                            <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="card-title fw-bolder mt-4">제5회 아디다스컵 주짓수챔피언십 경산</h5>
+                                </div>
+                            </div>
+
+                            <div class="card-text mb-2 text-center">
+                                <div class="text-center">
+                                <p>
+                                    <h6 id="mapAddress" class="bi-geo-alt-fill" add="경산시 하양읍 가마실길50 경일대학교">경산 경일대학교 체육관</h6>
+                                    <h6 class="bi-calendar-range"> 일반: 23/02/24 - 23/03/10</h6>
+                                    <h6 class="bi-calendar-range"> </h6>
+                                    <h6 class="fw-bolder text-success mt-2">주짓수 수련하는 모든 인원</h6>
+                                </p>
+                                </div>
+                            </div>
+
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div id="detailMove" class="text-center" detailAddress="https://www.instagram.com/sbm__sports/"><a class="btn btn-outline-dark mt-auto"href="#">자세히 보기</a></div>
                             </div>
                         </div>
                     </div>
